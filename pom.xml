@@ -8,6 +8,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>Java</module>
+        <module>Jupiter</module>
+        <module>Core</module>
     </modules>
 
     <properties>
