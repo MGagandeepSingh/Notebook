@@ -1,12 +1,16 @@
 package com.notebook.java._8;
 
+import com.notebook.dto.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Demo001OptionalTest {
 
@@ -14,29 +18,49 @@ public class Demo001OptionalTest {
     @DisplayName("Creating instance using Optional")
     class CreatingInstances {
 
-        @Test
+        @ParameterizedTest
+        @ValueSource(strings = {"Gagan", "", "  "})
         @DisplayName("Optional.of() without null")
-        void of() {
+        void ofWithoutNull(String nonNullValue) {
 
-            final String nonNull = "Gagan";
-            Optional<String> nonNullValue = Optional.of(nonNull);
-            Assertions.assertTrue(nonNullValue.isPresent(), "");
-            Assertions.assertEquals(nonNull, nonNullValue.get(), "");
+            Optional<String> nonNullValueOptional = Optional.of(nonNullValue);
+            Assertions.assertTrue(nonNullValueOptional.isPresent(), "");
+            Assertions.assertEquals(nonNullValue, nonNullValueOptional.get(), "");
         }
 
-        @Test
+        @NullSource
+        @ParameterizedTest
         @DisplayName("Optional.of() with null")
-        void ofNull() {
-            Assertions.assertThrows(NullPointerException.class, () -> Optional.of(null), "");
+        void ofWithNull(String name) {
+            Assertions.assertThrows(NullPointerException.class, () -> Optional.of(name), "");
+        }
+
+        @MethodSource
+        @ParameterizedTest
+        @DisplayName("Optional.ofNullable() with or without null")
+        void ofNullable(String name) {
+
+            Optional<String> optionalNull = Optional.ofNullable(name);
+            if (name == null) Assertions.assertThrows(NoSuchElementException.class, () -> optionalNull.get(), "");
+            else Assertions.assertTrue(optionalNull.isPresent(), "");
         }
 
         @Test
         @DisplayName("Optional.empty()")
         void empty() {
 
-            Optional<String> empty = Optional.empty();
-            Assertions.assertFalse(empty.isPresent(), "");
-            Assertions.assertThrows(NoSuchElementException.class, () -> empty.get(), "");
+            Optional<Employee> employee = Optional.empty();
+            Assertions.assertFalse(employee.isPresent(), "");
+            Assertions.assertThrows(NoSuchElementException.class, () -> employee.get(), "");
+        }
+
+        private static Stream<Arguments> ofNullable() {
+            return Stream.of(
+                    Arguments.of((String) null),
+                    Arguments.of("Gagan"),
+                    Arguments.of(" "),
+                    Arguments.of("")
+            );
         }
     }
 }
