@@ -1,6 +1,6 @@
-package com.notebook.java._8;
+package com.notebook.java._8.optional;
 
-import com.notebook.dto.Employee;
+import com.notebook.core.dto.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -37,11 +37,12 @@ public class Demo001OptionalTest {
 
         @MethodSource
         @ParameterizedTest
+        @SuppressWarnings("SameParameterValue")
         @DisplayName("Optional.ofNullable() with or without null")
         void ofNullable(String name) {
 
             Optional<String> optionalNull = Optional.ofNullable(name);
-            if (name == null) Assertions.assertThrows(NoSuchElementException.class, () -> optionalNull.get(), "");
+            if (name == null) Assertions.assertThrows(NoSuchElementException.class, optionalNull::get, "");
             else Assertions.assertTrue(optionalNull.isPresent(), "");
         }
 

@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <artifactId>Jupiter</artifactId>
+    <artifactId>JUnit5</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

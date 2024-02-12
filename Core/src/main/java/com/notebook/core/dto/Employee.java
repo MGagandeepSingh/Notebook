@@ -6,7 +6,7 @@ public record Employee(String firstName,
                        String lastName,
                        boolean isPermanent,
                        int salary,
-                       Designation designation) {
+                       String designation) {
 
     @SuppressWarnings("all")
     @Builder(toBuilder = true)

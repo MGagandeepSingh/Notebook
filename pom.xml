@@ -7,8 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>Java</module>
-        <module>Jupiter</module>
+        <module>Java8</module>
+        <module>JUnit5</module>
         <module>Core</module>
     </modules>
 
@@ -26,6 +26,7 @@
 
         <!-- Plugins -->
         <maven.compiler.version>3.12.1</maven.compiler.version>
+        <commons.lang3.version>3.14.0</commons.lang3.version>
     </properties>
 
     <dependencyManagement>
@@ -34,6 +35,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
             </dependency>
 
             <!-- Scope: Testing -->
@@ -62,6 +68,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
