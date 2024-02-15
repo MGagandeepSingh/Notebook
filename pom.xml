@@ -10,6 +10,7 @@
         <module>Java8</module>
         <module>JUnit5</module>
         <module>Core</module>
+        <module>Sandbox</module>
     </modules>
 
     <properties>
@@ -20,13 +21,15 @@
 
         <!-- Dependencies -->
         <lombok.version>1.18.30</lombok.version>
+        <commons.lang3.version>3.14.0</commons.lang3.version>
 
         <!-- Scope: Testing -->
         <junit.version>5.10.2</junit.version>
 
         <!-- Plugins -->
         <maven.compiler.version>3.12.1</maven.compiler.version>
-        <commons.lang3.version>3.14.0</commons.lang3.version>
+        <slf4j.api.version>2.0.12</slf4j.api.version>
+        <logback.classic.version>1.4.14</logback.classic.version>
     </properties>
 
     <dependencyManagement>
@@ -40,6 +43,18 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3.version}</version>
+            </dependency>
+
+            <!-- Logging Capabilities -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.classic.version}</version>
             </dependency>
 
             <!-- Scope: Testing -->
@@ -84,6 +99,14 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
     </dependencies>
 
