@@ -11,6 +11,7 @@
         <module>JUnit5</module>
         <module>Core</module>
         <module>Sandbox</module>
+        <module>Webflux</module>
     </modules>
 
     <properties>
